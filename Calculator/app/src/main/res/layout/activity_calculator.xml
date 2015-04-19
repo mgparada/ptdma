@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textSize="45dip"
+        android:gravity="right|center"
+        android:layout_weight="1"
+        android:id="@+id/tvResult" />
+
+    <TableLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:stretchColumns="0,1,2,3"
+        >
+        <TableRow>
+            <Button android:id="@+id/bt1" android:text="1" />
+            <Button android:id="@+id/bt2" android:text="2" />
+            <Button android:id="@+id/bt3" android:text="3" />
+        </TableRow>
+        <TableRow>
+            <Button android:id="@+id/bt4" android:text="4" />
+            <Button android:id="@+id/bt5" android:text="5" />
+            <Button android:id="@+id/bt6" android:text="6" />
+        </TableRow>
+        <TableRow>
+            <Button android:id="@+id/bt7" android:text="7" />
+            <Button android:id="@+id/bt8" android:text="8" />
+            <Button android:id="@+id/bt9" android:text="9" />
+        </TableRow>
+        <TableRow android:gravity="center">
+            <Button android:id="@+id/bt0" android:text="0"/>
+        </TableRow>
+
+        <TableRow android:layout_marginTop="10dp">
+            <Button android:id="@+id/btplus" android:text="+" />
+            <Button android:id="@+id/btminus" android:text="-" />
+            <Button android:id="@+id/btmult" android:text="*" />
+        </TableRow>
+        <TableRow>
+            <Button android:id="@+id/btdiv" android:text="/" />
+            <Button android:id="@+id/btclear" android:text="C" />
+            <Button android:id="@+id/btequals" android:text="=" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
