@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ImageFiltering</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="filters">
+        <item>Gaussian</item>
+        <item>Gray</item>
+        <item>Blur</item>
+        <item>Pixelate</item>
+        <item>Invert</item>
+        <item>Neon</item>
+        <item>Oil</item>
+    </string-array>
+
+</resources>
