@@ -75,6 +75,8 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 imgSelected.setImageResource(android.R.color.transparent);
+                lvFilters.clearChoices();
+                lvFilters.deferNotifyDataSetChanged();
             }
         });
 
@@ -149,20 +151,27 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private Bitmap doFilter ( int filter ) {
-        Toast.makeText(getApplicationContext(), Integer.toString(filter), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), filterNames[filter], Toast.LENGTH_LONG).show();
         switch(filter) {
             case 0: //Gaussian
                 return Filters.applyGaussianBlurEffect(originalImage);
-            case 1: //Gray
+            case 1: //Embossing
+                return Filters.applyEmbossEffect(originalImage);
+            case 2: //Sharpen
+                return Filters.applySharpenEffect(originalImage, 11);
+            case 3: //Edge Enhancement
+                return Filters.applyEdgeEnhancement(originalImage);
+                //return Filters.applyGammaEffect(originalImage, 150, 70, 200);
+            case 4: //Invert Color
+                return Filters.applyInvertEffect(originalImage);
+            case 5: //Invert image
+                return Filters.flip(originalImage, 2);
+            case 6: //Gray
                 return Filters.applyGreyscaleEffect(originalImage);
-            /*case 2:
-                return PixelateFilter.changeToPixelate(originalImage, 2);
-            case 3:
-                return InvertFilter.chageToInvert(originalImage);
-            case 4:
-                return NeonFilter.changeToNeon(originalImage, 20, 50, 40);
-            case 5:
-                return OilFilter.changeToOil(originalImage, 40);*/
+            case 7: //Blur
+                return Filters.applyGaussianBlurEffect(originalImage);
+            case 8: //Gamma
+                return Filters.applyGammaEffect(originalImage, 0.4, 0.9, 1.5);
             default:
                 return null;
         }

@@ -1,7 +1,7 @@
 package gomez.mauro.ptdma.fib.upc.imagefiltering;
 
 /**
- * Created by root on 13/05/15.
+ * Created by mauro on 13/05/15.
  */
 import android.graphics.Bitmap;
 import android.graphics.Color;

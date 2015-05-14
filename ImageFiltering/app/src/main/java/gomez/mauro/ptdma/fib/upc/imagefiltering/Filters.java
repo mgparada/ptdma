@@ -2,11 +2,15 @@ package gomez.mauro.ptdma.fib.upc.imagefiltering;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Matrix;
 
 /**
- * Created by root on 13/05/15.
+ * Created by mauro on 13/05/15.
  */
 public class Filters {
+
+    public static final int FLIP_VERTICAL = 1;
+    public static final int FLIP_HORIZONTAL = 2;
 
     public static Bitmap applyInvertEffect(Bitmap src) {
         // create new bitmap with the same settings as source bitmap
@@ -135,5 +139,54 @@ public class Filters {
         convMatrix.Factor = 16;
         convMatrix.Offset = 0;
         return ConvolutionMatrix.computeConvolution3x3(src, convMatrix);
+    }
+
+    public static Bitmap applyEmbossEffect(Bitmap src) {
+        double[][] EmbossConfig = new double[][] {
+                { -1 ,  0, -1 },
+                {  0 ,  4,  0 },
+                { -1 ,  0, -1 }
+        };
+        ConvolutionMatrix convMatrix = new ConvolutionMatrix(3);
+        convMatrix.applyConfig(EmbossConfig);
+        convMatrix.Factor = 1;
+        convMatrix.Offset = 127;
+        return ConvolutionMatrix.computeConvolution3x3(src, convMatrix);
+    }
+
+    public static Bitmap applySharpenEffect(Bitmap src, double weight) {
+        double[][] SharpConfig = new double[][] {
+                { 0 , -2    , 0  },
+                { -2, weight, -2 },
+                { 0 , -2    , 0  }
+        };
+        ConvolutionMatrix convMatrix = new ConvolutionMatrix(3);
+        convMatrix.applyConfig(SharpConfig);
+        convMatrix.Factor = weight - 8;
+        return ConvolutionMatrix.computeConvolution3x3(src, convMatrix);
+    }
+
+    public static Bitmap applyEdgeEnhancement(Bitmap src) {
+        double[][] edgeEnhancement = new double[][] {
+                {  0 , 0,  0 },
+                { -1,  1, -2 },
+                {  0,  0,  0 }
+        };
+        ConvolutionMatrix convMatrix = new ConvolutionMatrix(3);
+        convMatrix.applyConfig(edgeEnhancement);
+        return ConvolutionMatrix.computeConvolution3x3(src, convMatrix);
+    }
+
+    public static Bitmap flip(Bitmap src, int type) {
+        Matrix matrix = new Matrix();
+
+        if(type == FLIP_VERTICAL)
+            matrix.preScale(1.0f, -1.0f);
+        else if(type == FLIP_HORIZONTAL)
+            matrix.preScale(-1.0f, 1.0f);
+        else return null;
+
+        // return transformed image
+        return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
     }
 }
